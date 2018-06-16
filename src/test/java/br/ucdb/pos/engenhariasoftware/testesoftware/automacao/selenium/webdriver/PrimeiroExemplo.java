@@ -9,10 +9,10 @@ public class PrimeiroExemplo {
     public static void main(String[] args) {
 
         // seta o gecko driver no classpath do prorama
-        String caminho = getPathPacote();
+        boolean windows = System.getProperty("os.name").toUpperCase().contains("WIN");
         System.setProperty("webdriver.gecko.driver",
-                System.getProperty("user.dir") + "/src/test/java/" +
-                        caminho + "/geckodriver.exe");
+                System.getProperty("user.dir") + "/src/test/resources/drivers/" +
+                        "/geckodriver" + (windows ? ".exe" : ""));
 
         // abre o firefox
         WebDriver driver = new FirefoxDriver();
@@ -25,12 +25,6 @@ public class PrimeiroExemplo {
 
         // fecha todas as janelas do navegador e finaliza a sessão do WebDriver
         driver.quit();
-    }
-
-    private static String getPathPacote(){
-        return PrimeiroExemplo.class.getPackage().toString()
-                .replaceAll("package ", "")
-                .replaceAll("\\.", "//");
     }
 }
 

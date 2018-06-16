@@ -3,11 +3,8 @@ package br.ucdb.pos.engenhariasoftware.testesoftware.automacao.selenium.webdrive
 import br.ucdb.pos.engenhariasoftware.testesoftware.automacao.selenium.webdriver.pageobject.LancamentoPage;
 import br.ucdb.pos.engenhariasoftware.testesoftware.automacao.selenium.webdriver.pageobject.ListaLancamentosPage;
 import br.ucdb.pos.engenhariasoftware.testesoftware.automacao.selenium.webdriver.pageobject.TipoLancamento;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -27,10 +24,10 @@ public class LancamentoTest {
 
     @BeforeClass
     private void inicialliza() {
-        String caminho = getPathPacote();
+        boolean windows = System.getProperty("os.name").toUpperCase().contains("WIN");
         System.setProperty("webdriver.gecko.driver",
-                System.getProperty("user.dir") + "/src/test/java/" +
-                        caminho + "/geckodriver.exe");
+                System.getProperty("user.dir") + "/src/test/resources/drivers/" +
+                        "/geckodriver" + (windows ? ".exe" : ""));
         driver = new FirefoxDriver();
         listaLancamentosPage = new ListaLancamentosPage(driver);
         lancamentoPage = new LancamentoPage(driver);
@@ -66,12 +63,6 @@ public class LancamentoTest {
             max /= fator;
         }
         return new BigDecimal(( 1 + (Math.random() * (max - mim)))).setScale(2, RoundingMode.HALF_DOWN);
-    }
-
-    private static String getPathPacote(){
-        return PrimeiroExemplo.class.getPackage().toString()
-                .replaceAll("package ", "")
-                .replaceAll("\\.", "//");
     }
 
     /*
