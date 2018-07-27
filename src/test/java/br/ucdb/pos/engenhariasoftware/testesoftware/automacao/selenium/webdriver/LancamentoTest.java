@@ -64,47 +64,7 @@ public class LancamentoTest {
         }
         return new BigDecimal(( 1 + (Math.random() * (max - mim)))).setScale(2, RoundingMode.HALF_DOWN);
     }
-
-    /*
-    @Test
-    public void ciraLancamento(){
-
-        WebDriver driver = inicialliza();
-        //a inicialização é a mesma do exemplo anteriror
-        driver.get("http://localhost:8080/lancamentos");
-
-        driver.findElement(By.id("novoLancamento")).click();
-
-        driver.findElement(By.id("tipoLancamento2")).click(); // informa lançamento: SAÍDA
-        LocalDateTime dataHora = LocalDateTime.now();
-        DateTimeFormatter formatoLancamento = DateTimeFormatter.ofPattern("dd.MM.yy");
-        WebElement descricao = driver.findElement(By.id("descricao"));
-        descricao.click();
-        final String descricaoLancamento = "Lançando saída automatizada " + dataHora.format(formatoLancamento);
-        descricao.sendKeys(descricaoLancamento);
-
-        DateTimeFormatter formatoDataLancamento = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        WebElement dataLancamento = driver.findElement(By.name("dataLancamento"));
-        dataLancamento.sendKeys(dataHora.format(formatoDataLancamento));
-
-        BigDecimal valorLancamento = getValorLancamento();
-        WebElement valor = driver.findElement(By.id("valor"));
-        driver.findElement(By.id("tipoLancamento2")).click();
-        valor.sendKeys(String.valueOf(valorLancamento));
-        driver.findElement(By.id("btnSalvar")).click();
-
-        //verifica se o lancamento foi cadastrado
-        //String lancamentos = driver.findElement(By.id("tabelaLancamentos")).getAttribute("innerHTML");
-        String lancamentos = driver.getPageSource();
-        DecimalFormat df = new DecimalFormat("#,###,##0.00");
-        assertTrue(lancamentos.contains(descricaoLancamento) &&
-                lancamentos.contains(df.format(valorLancamento)) &&
-                lancamentos.contains(dataHora.format(formatoDataLancamento)) &&
-                lancamentos.contains("Saída"));
-
-        driver.quit();
-    }
-     */
+    
 }
 
 
