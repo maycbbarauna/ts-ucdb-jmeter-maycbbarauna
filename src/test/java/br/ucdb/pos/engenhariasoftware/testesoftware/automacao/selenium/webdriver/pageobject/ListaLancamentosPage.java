@@ -25,7 +25,7 @@ public class ListaLancamentosPage {
     }
 
     public boolean existeLancamento(final String descricaoLancamento, final BigDecimal valorLancamento,
-                                    LocalDateTime dataHora, TipoLancamento tipo){
+                                    LocalDateTime dataHora, TipoLancamento tipo, String categoria){
 
         DateTimeFormatter formatoDataLancamento = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String lancamentos = driver.getPageSource();
@@ -33,7 +33,8 @@ public class ListaLancamentosPage {
         return (lancamentos.contains(descricaoLancamento) &&
                 lancamentos.contains(df.format(valorLancamento)) &&
                 lancamentos.contains(dataHora.format(formatoDataLancamento)) &&
-                lancamentos.contains(tipo.getDescricao()));
+                lancamentos.contains(tipo.getDescricao()) &&
+        lancamentos.contains(categoria));
     }
 }
 
